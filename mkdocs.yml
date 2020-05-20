@@ -1,4 +1,5 @@
 site_name: Python Tutorial
+theme: readthedocs
 pages:
   - Lesson1: index.md
   - Lesson2: lesson2.md
