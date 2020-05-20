@@ -1,1 +1,4 @@
 site_name: Python Tutorial
+pages:
+  - Lesson1: index.md
+  - Lesson2: lesson2.md

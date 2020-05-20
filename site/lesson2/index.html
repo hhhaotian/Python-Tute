@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Lesson2 - Python Tutorial</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Python Tutorial</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Lesson1</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Lesson2</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#lesson-2" class="nav-link">Lesson 2</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#1-itertor-in-python" class="nav-link">1. Itertor in Python</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2-image-processing" class="nav-link">2. Image Processing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="lesson-2">Lesson 2</h1>
+<hr />
+<h2 id="1-itertor-in-python">1. Itertor in Python</h2>
+<h4 id="11">1.1 迭代器</h4>
+<p>在python中，所有可以迭代的数据除了可以通过for循环或while循环一次遍历其中的子元素，还可以通过迭代iter()进行遍历</p>
+<pre><code class="python">
+    a_list = [1,2,3,4,5]
+
+    #通过for循环
+    for number in a_list:
+        print(number)
+
+    #通过iter()方法得到一个迭代对象
+    iter_list = iter(a_list)
+
+    #迭代对象可以通过for循环进行遍历
+    for iter_element in iter_list：
+        print(iter_element)
+
+    #也可以通过next()方法进行遍历
+    while True:
+        try:
+            print(next(iter_list))
+        except StopIteration:
+            print(&quot;stop iteration&quot;)
+
+</code></pre>
+
+<p>注意，每个迭代对象只能被遍历一遍，不可以重复遍历</p>
+<h4 id="12-itertools-">1.2 itertools - 排列组合迭代器</h4>
+<table>
+<thead>
+<tr>
+<th>迭代器</th>
+<th>实参</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product()</td>
+<td>p, q, ... [repeat=1]</td>
+<td>笛卡尔积，相当于嵌套的for循环</td>
+</tr>
+<tr>
+<td>permutations()</td>
+<td>p[, r]</td>
+<td>长度r元组，所有可能的排列，无重复元素</td>
+</tr>
+<tr>
+<td>combinations()</td>
+<td>p, r</td>
+<td>长度r元组，有序，无重复元素</td>
+</tr>
+<tr>
+<td>combinations_with_replacement()</td>
+<td>p, r</td>
+<td>长度r元组，有序，元素可重复</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-image-processing">2. Image Processing</h2>
+<h4 id="21-pillow">2.1 下载pillow</h4>
+<pre><code>pillow是一个第三方图像处理包，想要在自己电脑上使用pillow库里的一系列工具首先需要安装pillow
+</code></pre>
+<pre><code>
+    #通过pip安装pillow
+
+    sudo pip3 install pillow
+
+    #通过conda安装pillow
+
+    conda install pillow
+
+</code></pre>
+
+<h4 id="22">2.2 加载图像</h4>
+<pre><code>可以通过Image里的load()方法加载已有图片，这个方法的参数是完整的文件名(要包括文件后缀)
+</code></pre>
+<pre><code class="python">
+    from PIL import Image
+
+    Image.load('example.png')
+
+</code></pre>
+
+<h4 id="23">2.3 创建新的图片</h4>
+<pre><code>通过Image里的new()方法可以创建三种不同类型的空白文件，
+
+- 第一个参数是mode（颜色模式）；
+    - "1": 黑白图片
+    - "L": 灰度图
+    - "RGB": 彩色
+
+- 第二个参数是图片大小（size）；
+    - (width * height)
+
+- 第三个参数是初始颜色（默认颜色是黑色）
+
+    - 可以直接填入常用颜色的名称。如'red'
+    - 也可以填入十六进制表示的颜色，如#FF0000表示红色。
+    - 还能传入元组，比如(255, 0, 0, 255)或者(255， 0， 0)表示红色。
+
+新创建的图像文件可以使用new()方法储存到本地，new()方法的使用和load()方法类似
+</code></pre>
+<pre><code class="python">
+    from PIL import Image
+
+    #创建一个彩分辨率为100x100的红色图片
+    Image.new('RGB', (100, 100), 'red')
+
+</code></pre>
+
+<h4 id="24-image">2.4 获取Image类信息有关的一些方法</h4>
+<pre><code class="python">
+    #显示图像
+    Image.show()
+
+    #图像的模式
+    Image.mode()
+
+    #图像的大小
+    Image.size()
+
+    #图像的格式
+    Image.format()
+
+
+</code></pre>
+
+<h4 id="25">2.5 获取某个像素点上的值</h4>
+<p>通过getpixel(position)方法获取图片上像素点的值，参数：有tuple组成的坐标</p>
+<ul>
+<li>(x,y)<ul>
+<li>x: 到图像左边的距离 </li>
+<li>y: 到图像顶边的距离</li>
+</ul>
+</li>
+</ul>
+<h4 id="26">2.6 设置图像上像素点的值</h4>
+<p>通过putpixel(position, color)方法设置图片某个像素点的值
+- 第一个参数：像素点的位置，也是由tuple组成的坐标
+- 第二个参数：设置的颜色，只能通过具体的值来设定</p>
+<pre><code class="python">
+    from PIL import Image
+
+    #创建一个2*2颜色为黑色的黑白图片
+    im1 = Image.new('1', (2, 2))
+    #将(0,0)像素点设置成白色
+    im1.putpixel((0, 0), 1)
+
+    #创建一个2*2的黑色的彩色图片
+    im2 = Image.new(&quot;RGB&quot;, (2, 2))
+    #(0，0)像素点设置成红色
+    im2.putpixel((0, 0), (255, 0, 0))
+
+</code></pre>
+
+<h4 id="27">2.7 图像缩放</h4>
+<p>通过resize()方法可以缩放图像</p>
+<pre><code class="python">
+    from PIL import Image
+
+    im = Image.new('1', (10,10), 1)
+    im.resize((100, 100))
+
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

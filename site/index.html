@@ -24,9 +24,22 @@
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href=".">Python Tutorial</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Lesson1</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="lesson2/" class="nav-link">Lesson2</a>
+                            </li>
+                        </ul>
 
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
@@ -34,6 +47,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="lesson2/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -63,6 +86,14 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#3-python" class="nav-link">3. python的数据类型</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4-listtuple" class="nav-link">4. list和tuple</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#5-dictset" class="nav-link">5. dict和set</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -313,7 +344,266 @@ strip()是为移除指定字符串char，如果没传入参数则为移除空格
 <li>常用语逻辑判断以及逻辑运算 </li>
 </ul>
 </li>
-</ul></div>
+</ul>
+<h2 id="4-listtuple">4. list和tuple</h2>
+<h5 id="41-list">4.1 list</h5>
+<p>python中非常常用的列表，可以任意删除和添加元素</p>
+<ul>
+<li>创建一个list</li>
+</ul>
+<pre><code class="python">
+    #最直接的方法就是在[]里直接设定list里的元素
+    letters = ['a', 'b', 'c', 'd']
+
+    #也可以用list()方法，将字符串或者tuple转成list
+
+    letters = &quot;abc&quot;
+    list(letters)
+
+    #list可以存储不同数据类型的元素
+
+    list_example = ['a', 'b', 1, 2, True]
+
+    #数组里面的元素可以是数组
+
+    matrix = [[1,2,3], [4,5,6], [7,8,9]]
+
+</code></pre>
+
+<ul>
+<li>读取list中的元素</li>
+</ul>
+<pre><code class="python">
+    letters = ['a', 'b', 'c', 'd']
+
+    #读取数组的长度
+    len(letters)
+
+    #根据index直接读取list中特定的元素
+    print(letters[0])   # 输出'a'
+    print(letters[-1])  # 输出'd'
+
+    #也可以读取数组中的某一段元素
+    print(letters[1 : 3]) # 输出 'b', 'c'
+
+    #查找某个元素在list中的index
+    print(letters.index('a')) # 输出 0
+
+</code></pre>
+
+<ul>
+<li>操作list里的元素</li>
+</ul>
+<pre><code class="python">
+    letters = ['a', 'b', 'c', 'd']
+
+    #添加一个新的元素
+
+    letters.append('e') # 新元素被添加到letters里，现在这个list里有['a', 'b', 'c', 'd', 'e']5个元素
+
+    #插入一个新元素得到指定位置
+
+    letters.insert(0, 'z') #新元素被插入到letters列表中的第一个位置， ['z', a', 'b', 'c', 'd', 'e']
+
+    #从list中取出一个元素
+
+    letters.pop() # pop()方法没有传入参数的时候，默认list里最后一个元素被取出
+
+    letters.pop(0) # 传入参数0，list里第一个元素被取出
+
+    #从list里面删除一个指定的元素
+
+    letters.remove('b') # 元素'b'被从list删除
+
+
+</code></pre>
+
+<ul>
+<li>两个list还可以直接合并</li>
+</ul>
+<pre><code class="python">
+    a = [1,2,3]
+    b = [4,5,6]
+    print(a+b) #[1, 2, 3, 4, 5, 6]
+
+</code></pre>
+
+<ul>
+<li>
+<p>对list里的元素进行排序</p>
+<ul>
+<li>list 中有默认的sort(key, reverse)方法可以对list排序</li>
+<li>参数：<ul>
+<li>key：主要是用来进行比较的元素，默认是空</li>
+<li>reverse：用来设置升序还是降序，reverse默认是False(降序)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="python">
+    increase = [5, 4, 3, 2, 1]
+    increase.sort()  #升序排序[1, 2, 3, 4, 5]
+
+    decrease = [1, 2, 3, 4, 5]
+    decrease.sort(True) #降序排序 [5, 4, 3, 2, 1]
+
+</code></pre>
+
+<pre><code class="python">
+    def takeSecond(elem):
+        return elem[1]
+
+    random = [(2, 2), (3, 4), (4, 1), (1, 3)]
+
+    # 指定第二个元素排序
+    random.sort(key=takeSecond)
+
+</code></pre>
+
+<p>以上例子输出</p>
+<pre><code>
+    [(4, 1), (2, 2), (1, 3), (3, 4)]
+
+</code></pre>
+
+<h5 id="42-tuple">4.2 tuple</h5>
+<p>tuple和list类似，但是tuple创建以后就不能修改</p>
+<pre><code class="python">
+    a = (1, 2, 3) #定义了一个tuple
+
+    a = () # 定义可一个空的tuple
+
+    a = (1,) #定义一个tuple只有一个元素时，需要在元素后加一个逗号(,), 因为()本身可以表示成数学负号，加一个逗号就是为了消除奇异
+
+
+</code></pre>
+
+<h2 id="5-dictset">5. dict和set</h2>
+<h5 id="51-dict">5.1 dict的使用</h5>
+<p>字典是另一种可变容器模型，且可存储任意类型对象。</p>
+<p>字典的每个键值(key=&gt;value)对用冒号(:)分割，每个对之间用逗号(,)分割，整个字典包括在花括号({})</p>
+<pre><code>
+    d = {key1 : value1, key2 : value2 }
+
+</code></pre>
+
+<pre><code class="python">
+    cards_value = {'A': 1, '0': 10, 'J' : 11}
+
+</code></pre>
+
+<p>以上是一个字典的例子，这个字典里面存了扑克牌里的字母和字母代表的值的对应关系。不同字母的对应关系就可以通过字典来实现，方便我们查找和维护。</p>
+<ul>
+<li>查找字典中的值</li>
+</ul>
+<pre><code class="python">
+    print(cards_value['A']) # 输出 1
+
+    print(cards_value['0']) # 输出 10
+
+</code></pre>
+
+<ul>
+<li>修改字典中的元素</li>
+</ul>
+<pre><code class="python">
+    #直接修改
+    cards_value['Q'] = 12
+
+
+    # 通过update()方法
+    cards_value.update({'K' : 13})
+
+
+</code></pre>
+
+<p>以上两种方法可以添加元素，也可以直接修改key对应的value</p>
+<ul>
+<li>删除元素</li>
+</ul>
+<pre><code class="python">
+    #del方法
+    del[cards_value['K']]
+
+
+    #pop()方法
+    value = cards_value.pop('Q') #删除元素'Q':12, 并得到它的value
+    print(value)  # 输出
+
+
+    #clear()方法
+    cards_value.clear()  # 字典cards_value被全部清空   
+
+
+</code></pre>
+
+<ul>
+<li>
+<p>dict的一些内置方法</p>
+<ul>
+<li>
+<p>dict.clear() - 删除字典内所有元素</p>
+</li>
+<li>
+<p>dict.copy() - 返回一个字典的浅复制</p>
+</li>
+<li>
+<p>dict.get(key, default=None) - 返回指定键的值，如果值不在字典中返回default值</p>
+</li>
+<li>
+<p>dict.has_key(key) - 如果键在字典dict里返回true，否则返回false</p>
+</li>
+<li>
+<p>dict.items() - 以列表返回可遍历的(键, 值) 元组数组</p>
+</li>
+<li>
+<p>dict.keys() - 以列表返回一个字典所有的键</p>
+</li>
+<li>
+<p>dict.values() - 以列表返回字典中的所有值</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="52-set">5.2 set</h5>
+<p>集合（set）是一个无序的不重复元素序列。</p>
+<p>可以使用大括号 { } 或者 set() 函数创建集合，注意：创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典。</p>
+<pre><code class="pytho">
+    #直接使用大括号
+    a_set = {1, 2, 3}
+
+    #set()函数
+    set(1)
+
+</code></pre>
+
+<ul>
+<li>添加一个新的元素</li>
+</ul>
+<pre><code class="python">
+    #可以直接用add()添加元素
+    a_set.add(4)
+
+    #update()方法也可以添加元素，且参数可以是列表，元组，字典等，语法格式如下：
+    a_set.update([5,6])
+
+</code></pre>
+
+<p>因为set是一个元素不重复的集合，所以当重复添加元素的时候，set集合不会发生变化</p>
+<ul>
+<li>删除一个元素</li>
+</ul>
+<p>```python</p>
+<pre><code>#remove()方法可将元素 x 从集合 s 中移除，如果元素不存在，则会发生错误。
+
+a_set.remove(6)
+
+
+#dicard()方法也可以移除集合中的元素，且如果元素不存在，不会发生错误。格式如下所示：
+
+a_set.discard(6)
+</code></pre></div>
             </div>
         </div>
 
@@ -397,5 +687,5 @@ strip()是为移除指定字符串char，如果没传入参数则为移除空格
 
 <!--
 MkDocs version : 1.1
-Build Date UTC : 2020-05-15 10:02:38
+Build Date UTC : 2020-05-20 09:18:29
 -->
