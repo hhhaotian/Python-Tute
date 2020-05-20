@@ -81,7 +81,7 @@
 
 	from PIL import Image
 
-	Image.load('example.png')
+	Image.open('example.png')
 
 ```
 
