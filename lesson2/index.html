@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Lesson2 - Python Tutorial</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Lesson2";
+    var mkdocs_page_input_path = "lesson2.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Python Tutorial</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Lesson1</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Lesson2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-itertor-in-python">1. Itertor in Python</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 迭代器</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12-itertools-">1.2 itertools - 排列组合迭代器</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-image-processing">2. Image Processing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21-pillow">2.1 下载pillow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2 加载图像</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23">2.3 创建新的图片</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24-image">2.4 获取Image类信息有关的一些方法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#25">2.5 获取某个像素点上的值</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#26">2.6 设置图像上像素点的值</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#27">2.7 图像缩放</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Python Tutorial</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Lesson2</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="lesson-2">Lesson 2</h1>
+<hr />
+<h2 id="1-itertor-in-python">1. Itertor in Python</h2>
+<h4 id="11">1.1 迭代器</h4>
+<p>在python中，所有可以迭代的数据除了可以通过for循环或while循环一次遍历其中的子元素，还可以通过迭代iter()进行遍历</p>
+<pre><code class="python">
+    a_list = [1,2,3,4,5]
+
+    #通过for循环
+    for number in a_list:
+        print(number)
+
+    #通过iter()方法得到一个迭代对象
+    iter_list = iter(a_list)
+
+    #迭代对象可以通过for循环进行遍历
+    for iter_element in iter_list：
+        print(iter_element)
+
+    #也可以通过next()方法进行遍历
+    while True:
+        try:
+            print(next(iter_list))
+        except StopIteration:
+            print(&quot;stop iteration&quot;)
+
+</code></pre>
+
+<p>注意，每个迭代对象只能被遍历一遍，不可以重复遍历</p>
+<h4 id="12-itertools-">1.2 itertools - 排列组合迭代器</h4>
+<table>
+<thead>
+<tr>
+<th>迭代器</th>
+<th>实参</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product()</td>
+<td>p, q, ... [repeat=1]</td>
+<td>笛卡尔积，相当于嵌套的for循环</td>
+</tr>
+<tr>
+<td>permutations()</td>
+<td>p[, r]</td>
+<td>长度r元组，所有可能的排列，无重复元素</td>
+</tr>
+<tr>
+<td>combinations()</td>
+<td>p, r</td>
+<td>长度r元组，有序，无重复元素</td>
+</tr>
+<tr>
+<td>combinations_with_replacement()</td>
+<td>p, r</td>
+<td>长度r元组，有序，元素可重复</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-image-processing">2. Image Processing</h2>
+<h4 id="21-pillow">2.1 下载pillow</h4>
+<pre><code>pillow是一个第三方图像处理包，想要在自己电脑上使用pillow库里的一系列工具首先需要安装pillow
+</code></pre>
+<pre><code>
+    #通过pip安装pillow
+
+    sudo pip3 install pillow
+
+    #通过conda安装pillow
+
+    conda install pillow
+
+</code></pre>
+
+<h4 id="22">2.2 加载图像</h4>
+<pre><code>可以通过Image里的load()方法加载已有图片，这个方法的参数是完整的文件名(要包括文件后缀)
+</code></pre>
+<pre><code class="python">
+    from PIL import Image
+
+    Image.load('example.png')
+
+</code></pre>
+
+<h4 id="23">2.3 创建新的图片</h4>
+<pre><code>通过Image里的new()方法可以创建三种不同类型的空白文件，
+
+- 第一个参数是mode（颜色模式）；
+    - "1": 黑白图片
+    - "L": 灰度图
+    - "RGB": 彩色
+
+- 第二个参数是图片大小（size）；
+    - (width * height)
+
+- 第三个参数是初始颜色（默认颜色是黑色）
+
+    - 可以直接填入常用颜色的名称。如'red'
+    - 也可以填入十六进制表示的颜色，如#FF0000表示红色。
+    - 还能传入元组，比如(255, 0, 0, 255)或者(255， 0， 0)表示红色。
+
+新创建的图像文件可以使用new()方法储存到本地，new()方法的使用和load()方法类似
+</code></pre>
+<pre><code class="python">
+    from PIL import Image
+
+    #创建一个彩分辨率为100x100的红色图片
+    Image.new('RGB', (100, 100), 'red')
+
+</code></pre>
+
+<h4 id="24-image">2.4 获取Image类信息有关的一些方法</h4>
+<pre><code class="python">
+    #显示图像
+    Image.show()
+
+    #图像的模式
+    Image.mode()
+
+    #图像的大小
+    Image.size()
+
+    #图像的格式
+    Image.format()
+
+
+</code></pre>
+
+<h4 id="25">2.5 获取某个像素点上的值</h4>
+<p>通过getpixel(position)方法获取图片上像素点的值，参数：有tuple组成的坐标</p>
+<ul>
+<li>(x,y)<ul>
+<li>x: 到图像左边的距离 </li>
+<li>y: 到图像顶边的距离</li>
+</ul>
+</li>
+</ul>
+<h4 id="26">2.6 设置图像上像素点的值</h4>
+<p>通过putpixel(position, color)方法设置图片某个像素点的值
+- 第一个参数：像素点的位置，也是由tuple组成的坐标
+- 第二个参数：设置的颜色，只能通过具体的值来设定</p>
+<pre><code class="python">
+    from PIL import Image
+
+    #创建一个2*2颜色为黑色的黑白图片
+    im1 = Image.new('1', (2, 2))
+    #将(0,0)像素点设置成白色
+    im1.putpixel((0, 0), 1)
+
+    #创建一个2*2的黑色的彩色图片
+    im2 = Image.new(&quot;RGB&quot;, (2, 2))
+    #(0，0)像素点设置成红色
+    im2.putpixel((0, 0), (255, 0, 0))
+
+</code></pre>
+
+<h4 id="27">2.7 图像缩放</h4>
+<p>通过resize()方法可以缩放图像</p>
+<pre><code class="python">
+    from PIL import Image
+
+    im = Image.new('1', (10,10), 1)
+    im.resize((100, 100))
+
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href=".." class="btn btn-neutral" title="Lesson1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
