@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Lesson 3 - Python Tutorial</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Lesson 3";
+    var mkdocs_page_input_path = "lesson 3.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Python Tutorial</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Lesson1</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../lesson2/">Lesson2</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Python Tutorial</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Lesson 3</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="lesson-3">Lesson 3</h1>
+<hr />
+<h2 id="1-lambda">1. lambda表达</h2>
+<h4 id="lambda">Lambda表达式定义</h4>
+<pre><code class="python">
+    lambda parameters : expression
+
+</code></pre>
+
+<p>等价通过def定义的函数</p>
+<pre><code class="python">
+    def &lt;lambda&gt;(parameters):
+        return expression
+
+</code></pre>
+
+<p>lambda函数本身不需要return来返回值，表达式结果本身就是返回值</p>
+<p>和定义普通function一样，lambda表达式也能设置参数的默认值，例如：</p>
+<pre><code class="python">
+    lambda x=1, y=2 : x+y
+
+    def plus(x=1, y=2):
+        return x+y
+
+</code></pre>
+
+<h4 id="lambda_1">Lambda函数调用</h4>
+<ul>
+<li>直接赋值给一个变量，然后再像一般函数一样调用</li>
+</ul>
+<pre><code class="python">
+    func = lambda x:x**2
+    print(func(2))
+
+
+</code></pre>
+
+<ul>
+<li>直接传入参数</li>
+</ul>
+<pre><code class="python">
+    (lambda x:x**2)(2)
+
+</code></pre>
+
+<ul>
+<li>用于高阶函数中，例如sorted, map, filter</li>
+</ul>
+<h5 id="sorted">sorted</h5>
+<p>例如根据字典中的value进行排序</p>
+<pre><code class="python">
+
+    a = {'a':5, 'b':3, 'c':1}
+
+    sorted(a.items(), key = lambda x:x[1])
+
+    #等价于
+
+    def item_value(item):
+        return item[1]
+    sorted(a.items(), key = item_value)
+
+
+</code></pre>
+
+<h5 id="map">map</h5>
+<pre><code class="python">
+
+    map(lambda x:x**2, range(1,101))
+
+
+</code></pre>
+
+<h5 id="filter">filter</h5>
+<pre><code class="python">
+    filter(lambda x:x%3==0, range(10))
+
+</code></pre>
+
+<ul>
+<li>嵌套在函数中使用</li>
+</ul>
+<pre><code class="python">
+    def lambda_fun(n):
+        return lambda x : x + n
+
+    f_5 = lambda_fun(5)   # lambda x:x+5
+    print(f_5(1))
+
+</code></pre>
+
+<h4 id="lambda_2">lambda表达式的优缺点</h4>
+<ul>
+<li>
+<p>优点：</p>
+<ul>
+<li>代码简洁</li>
+<li>不用额外增加变量</li>
+</ul>
+</li>
+<li>
+<p>缺点：</p>
+<ul>
+<li>牺牲了代码的可读性</li>
+<li>大部分lambda函数都可以被标准库里的函数代替</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
