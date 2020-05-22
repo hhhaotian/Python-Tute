@@ -3,3 +3,4 @@ theme: readthedocs
 pages:
   - Lesson1: index.md
   - Lesson2: lesson2.md
+  - Lesson3: lesson3.md
