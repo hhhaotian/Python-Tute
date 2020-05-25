@@ -117,3 +117,106 @@ lambda函数本身不需要return来返回值，表达式结果本身就是返�
 - 缺点：
 	- 牺牲了代码的可读性
 	- 大部分lambda函数都可以被标准库里的函数代替
+
+
+## 2. recursion 
+
+
+
+递归需要保证每次递归的范围都逐渐缩小
+还要设置边界条件，以确保递归可以结束
+
+
+#### 使用recursion和while loop求斐波那契数列的第n项
+
+斐波那契数列：0，1，1，2，3，5
+
+```python
+	
+	#recursion
+	def fib(n):
+	    if n < 2:
+	        return n
+	    else:
+	        return fib(n-2)+fib(n-1)
+
+	# while loop
+	def fib_loop(n):
+	    a,b = 0,1
+	    while n > 0:
+	        a, b = b, a+b
+	        n -= 1
+	    return a
+
+
+```
+
+#### 通过recursion和while loop在list里查找元素n
+
+numbers = [2,3,4,5,7,8,9]
+
+```python
+
+#通过二分法查找list里的元素
+def find_number_recursion(numbers, n):
+    if len(numbers) == 0:
+        return None
+    middle = len(numbers)//2
+    if numbers[middle] == n:
+        return n
+    else:
+        if numbers[middle] > n:
+            return find_number_recursion(numbers[:middle],n)
+        else:
+            return find_number_recursion(numbers[middle+1:],n)
+
+
+
+def find_number_by_loop(numbers,n):
+    while True:
+        middle = len(numbers)//2
+        if len(numbers) == 0:
+            return None
+        if numbers[middle] == n:
+            return n
+        if numbers[middle] > n:
+            numbers = numbers[:middle]
+        else:
+            numbers = numbers[middle+1:]
+
+```
+
+
+#### 通过recursion计算等差数列第n项
+
+```python
+
+def arithmetical_sequence(a_0, d, n):
+    if n == 1:
+        return a_0
+    return arithmetical_sequence(a_0+d,d,n-1)
+
+```
+
+
+#### 通过recursion查找单词list里最长的单词
+
+```python
+
+def find_longest_words(words):
+    if len(words) == 0:
+        return None
+    if len(words) == 1:
+        return words[0]
+    rest_words = find_longest_words(words[1:])
+    if len(words[0]) >= len(rest_words):
+        return words[0]
+    else:
+        return rest_words
+
+```
+
+
+
+
+

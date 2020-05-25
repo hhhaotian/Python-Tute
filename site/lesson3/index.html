@@ -76,6 +76,18 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-recursion">2. recursion</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#recursionwhile-loopn">使用recursion和while loop求斐波那契数列的第n项</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recursionwhile-looplistn">通过recursion和while loop在list里查找元素n</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recursionn">通过recursion计算等差数列第n项</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recursionlist">通过recursion查找单词list里最长的单词</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -219,6 +231,85 @@
 </ul>
 </li>
 </ul>
+<h2 id="2-recursion">2. recursion</h2>
+<p>递归需要保证每次递归的范围都逐渐缩小
+还要设置边界条件，以确保递归可以结束</p>
+<h4 id="recursionwhile-loopn">使用recursion和while loop求斐波那契数列的第n项</h4>
+<p>斐波那契数列：0，1，1，2，3，5</p>
+<pre><code class="python">
+    #recursion
+    def fib(n):
+        if n &lt; 2:
+            return n
+        else:
+            return fib(n-2)+fib(n-1)
+
+    # while loop
+    def fib_loop(n):
+        a,b = 0,1
+        while n &gt; 0:
+            a, b = b, a+b
+            n -= 1
+        return a
+
+
+</code></pre>
+
+<h4 id="recursionwhile-looplistn">通过recursion和while loop在list里查找元素n</h4>
+<p>numbers = [2,3,4,5,7,8,9]</p>
+<pre><code class="python">
+#通过二分法查找list里的元素
+def find_number_recursion(numbers, n):
+    if len(numbers) == 0:
+        return None
+    middle = len(numbers)//2
+    if numbers[middle] == n:
+        return n
+    else:
+        if numbers[middle] &gt; n:
+            return find_number_recursion(numbers[:middle],n)
+        else:
+            return find_number_recursion(numbers[middle+1:],n)
+
+
+
+def find_number_by_loop(numbers,n):
+    while True:
+        middle = len(numbers)//2
+        if len(numbers) == 0:
+            return None
+        if numbers[middle] == n:
+            return n
+        if numbers[middle] &gt; n:
+            numbers = numbers[:middle]
+        else:
+            numbers = numbers[middle+1:]
+
+</code></pre>
+
+<h4 id="recursionn">通过recursion计算等差数列第n项</h4>
+<pre><code class="python">
+def arithmetical_sequence(a_0, d, n):
+    if n == 1:
+        return a_0
+    return arithmetical_sequence(a_0+d,d,n-1)
+
+</code></pre>
+
+<h4 id="recursionlist">通过recursion查找单词list里最长的单词</h4>
+<pre><code class="python">
+def find_longest_words(words):
+    if len(words) == 0:
+        return None
+    if len(words) == 1:
+        return words[0]
+    rest_words = find_longest_words(words[1:])
+    if len(words[0]) &gt;= len(rest_words):
+        return words[0]
+    else:
+        return rest_words
+
+</code></pre>
               
             </div>
           </div>
